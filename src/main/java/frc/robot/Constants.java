@@ -83,7 +83,7 @@ public final class Constants {
   /** Constants for the intake subsystem. */
   public static final class IntakeConstants {
     /** The speed to intake balls at. */
-    public static final double kSpeedIntake = 0.5;
+    public static final double kSpeedIntake = 0.95;
     /** The speed to advance balls through the belt at. */
     public static final double kSpeedBelt = 1.0;
   }
