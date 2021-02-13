@@ -88,12 +88,12 @@ public class RobotContainer {
     m_controllerManip
         .buttonLb
         .whenPressed(
-            () -> m_intakeSubsystem.startBelt(IntakeConstants.kSpeedBelt), m_intakeSubsystem)
+            () -> m_intakeSubsystem.startBelt(-IntakeConstants.kSpeedBelt), m_intakeSubsystem)
         .whenReleased(resetBeltCommand);
     m_controllerManip
         .buttonRb
         .whenPressed(
-            () -> m_intakeSubsystem.startBelt(-IntakeConstants.kSpeedBelt), m_intakeSubsystem)
+            () -> m_intakeSubsystem.startBelt(IntakeConstants.kSpeedBelt), m_intakeSubsystem)
         .whenReleased(resetBeltCommand);
 
     m_controllerManip
