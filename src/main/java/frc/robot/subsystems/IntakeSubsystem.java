@@ -10,6 +10,7 @@ import io.github.oblarg.oblog.Loggable;
 import io.github.oblarg.oblog.annotations.Log;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import frc.robot.Constants.RoboRIO;
 
@@ -40,7 +41,7 @@ public class IntakeSubsystem extends SubsystemBase implements Loggable {
       rowIndex = 4,
       columnIndex = 7,
       tabName = "Driver View")
-  private final WPI_TalonSRX m_motorBelt = new WPI_TalonSRX(RoboRIO.CAN.kPortMotorBelt);
+  private final WPI_VictorSPX m_motorBelt = new WPI_VictorSPX(RoboRIO.CAN.kPortMotorBelt);
 
   /**
    * Starts the ball intake motor to take in balls.

@@ -11,6 +11,7 @@ import io.github.oblarg.oblog.Loggable;
 import io.github.oblarg.oblog.annotations.Log;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import frc.robot.Constants.RoboRIO;
 
@@ -30,8 +31,8 @@ public class ShooterSubsystem extends SubsystemBase implements Loggable {
       rowIndex = 5,
       columnIndex = 7,
       tabName = "Driver View")
-  private final WPI_TalonSRX m_motorShooterLeft =
-      new WPI_TalonSRX(RoboRIO.CAN.kPortMotorLauncherLeft);
+  private final WPI_VictorSPX m_motorShooterLeft =
+      new WPI_VictorSPX(RoboRIO.CAN.kPortMotorLauncherLeft);
 
   private final WPI_TalonSRX m_motorShooterRight =
       new WPI_TalonSRX(RoboRIO.CAN.kPortMotorLauncherRight);
