@@ -78,6 +78,7 @@ public final class Constants {
     public static final double kSpeedNormal = 0.85;
     /** The fast speed to drive at. */
     public static final double kSpeedFast = 0.95;
+    /** Encoder distance per pulse: (pi * wheelSize) / cyclesperrev */
   }
 
   /** Constants for the intake subsystem. */

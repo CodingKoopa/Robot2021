@@ -69,7 +69,7 @@ public class DrivetrainSubsystem extends SubsystemBase implements Loggable {
 
   // Gyroscope
   @Log(name = "Gyroscope", width = 2, height = 2, rowIndex = 0, columnIndex = 7)
-  private final Gyro m_gyro = new ADXRS450_Gyro(SPI.Port.kMXP);
+  private final Gyro m_gyro = new ADXRS450_Gyro();
 
   @Log(name = "Drive", width = 2, height = 3, rowIndex = 0, columnIndex = 0)
   @Log(
