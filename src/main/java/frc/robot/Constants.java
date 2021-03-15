@@ -8,6 +8,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.geometry.Transform2d;
+import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.util.Units;
 
 /** Constants for ports on the robot and driver station, and for each subsystem. */
@@ -247,5 +250,34 @@ public final class Constants {
     public static final double kSpeedSlow = 0.4;
     /** The normal speed to shoot balls at. */
     public static final double kSpeedNormal = 1.0;
+  }
+
+  /** Constants for the vision subsystem. */
+  public static final class VisionConstants {
+    /** The nickname of the Raspberry Pi Camera in PhotonVision. */
+    public static final String kCamName = "Webcam";
+    /** The diagonal field of view of the Picam, in degrees. Determined experimentally. */
+    // public static final double kCamDiagonalFOV = 28;
+    public static final double kCamDiagonalFOV = 67;
+    /** The pitch of the camera when the shooter is lowered, in degrees. */
+    public static final double kCamPitchLow = -10;
+    /** The pitch of the camera when the shooter is raised, in degrees. */
+    public static final double kCamPitchHigh = 3;
+    /** Translation from the camera to the center of the robot. */
+    public static final Transform2d kTransCamToRobot =
+        new Transform2d(new Translation2d(0.4, 0.0), new Rotation2d());
+    /** The height of the camera when the shooter is lowered, in meters. */
+    public static final double kCamHeightOffGroundLow = 0.77;
+    /** The height of the camera when the shooter is raised, in meters. */
+    public static final double kCamHeightOffGroundHigh = 0.91;
+    /** TODO: Tune */
+    // public static final double kCamMaxLEDRange = 20;
+    public static final double kCamMaxLEDRange = 9000;
+    /** Width of the camera image, in pixels. */
+    public static final int kCamResolutionWidth = 960;
+    /** Height of the camera image, in pixels. */
+    public static final int kCamResolutionHeight = 720;
+    /** Minimum required area for the target. */
+    public static final int kMinTargetArea = 0;
   }
 }

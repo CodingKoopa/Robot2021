@@ -43,7 +43,10 @@ public class RobotContainer {
   @Log private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
   @Log private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   @Log private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
-  @Log private final VisionSubsystem m_visionSubsystem = new VisionSubsystem();
+
+  @Log
+  private final VisionSubsystem m_visionSubsystem =
+      new VisionSubsystem(m_drivetrainSubsystem::getPose);
 
   // Commands
 
