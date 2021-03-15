@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.LinearFilter;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import io.github.oblarg.oblog.Loggable;
@@ -43,6 +45,39 @@ public class IntakeSubsystem extends SubsystemBase implements Loggable {
       tabName = "Driver View")
   private final WPI_VictorSPX m_motorBelt = new WPI_VictorSPX(RoboRIO.CAN.kPortMotorBelt);
 
+  // Low-Pass Filter
+  LinearFilter m_lowPassFilter = LinearFilter.singlePoleIIR(0.1, 0.02);
+
+  // High-Pass Filter
+  LinearFilter m_highPassFilter = LinearFilter.highPass(0.1, 0.02);
+
+  @Log private double m_currentDraw = 0;
+
+  @Log private int m_numBalls = 0;
+
+  @Log private boolean m_takingInBall = false;
+
+  /** This method is run periodically. */
+  @Override
+  public void periodic() {
+    // m_currentDraw = m_motorIntake.getSupplyCurrent();
+    m_currentDraw = m_motorIntake.get() * 255;
+    SmartDashboard.putNumber("Current Draw", m_currentDraw);
+    SmartDashboard.putNumber("Low Pass", m_lowPassFilter.calculate(m_currentDraw));
+    double m_currentDrawEdgeDetection =
+        m_highPassFilter.calculate(m_lowPassFilter.calculate(m_currentDraw));
+    SmartDashboard.putNumber("High Pass", m_currentDrawEdgeDetection);
+    if (m_currentDrawEdgeDetection >= 5) {
+      if (!m_takingInBall) {
+        System.out.println("Motor is fighting back! Probably taking in a ball.");
+        m_takingInBall = true;
+        m_numBalls++;
+      }
+    } else {
+      m_takingInBall = false;
+    }
+  }
+
   /**
    * Starts the ball intake motor to take in balls.
    *
@@ -69,5 +104,9 @@ public class IntakeSubsystem extends SubsystemBase implements Loggable {
   /** Stops the belt motor. */
   public void stopBelt() {
     m_motorBelt.set(0);
+  }
+
+  public boolean isTakingInBall() {
+    return m_takingInBall;
   }
 }
