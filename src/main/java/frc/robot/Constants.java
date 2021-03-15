@@ -113,6 +113,18 @@ public final class Constants {
      */
     public static final double kMaxTrajectoryAcceleration = 3;
     /**
+     * The max velocity to turn at when turning on the spot.
+     *
+     * <p>Unit: Degrees / second.
+     */
+    public static final double kMaxTurnVelocity = 100;
+    /**
+     * The max acceleration to turn with when turning on the spot.
+     *
+     * <p>Unit: Meters / Second^2.
+     */
+    public static final double kMaxTurnAcceleration = 3;
+    /**
      * The maximum voltage available to the drive motors while following a path.
      *
      * <p>Unit: Volts.
@@ -221,6 +233,14 @@ public final class Constants {
        * <p>Unit: Meters / Second.
        */
       public static final double kP = 2.55;
+      /**
+       * The proportional term for the drive angular velocity PID controller.
+       *
+       * <p>TODO: Determine this.
+       *
+       * <p>Unit: Radians / Second.
+       */
+      public static final double kPAngular = 2.47;
       /**
        * The B term for the Ramsete controller.
        *

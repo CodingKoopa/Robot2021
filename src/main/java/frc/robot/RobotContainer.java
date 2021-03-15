@@ -28,8 +28,11 @@ import frc.robot.Constants.IntakeConstants;
 import frc.robot.Constants.ShooterConstants;
 import frc.robot.commands.AutoInitCommand;
 import frc.robot.commands.DisabledInitCommand;
+import frc.robot.commands.DriveStraightCommand;
 import frc.robot.commands.DriveTrajectoryCommand;
+import frc.robot.commands.GalacticSearchCommand;
 import frc.robot.commands.TeleopInitCommand;
+import frc.robot.commands.TurnToAngleCommand;
 import frc.robot.driverinput.F310Controller;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -66,6 +69,9 @@ public class RobotContainer {
           List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
           // End 3 meters straight ahead of where we started, facing forward
           new Pose2d(3, 0, new Rotation2d(0)));
+  // Galactic Search
+  private final GalacticSearchCommand m_galacticSearchCommand =
+      new GalacticSearchCommand(m_drivetrainSubsystem, m_visionSubsystem);
 
   // Driver Input
 
@@ -87,7 +93,10 @@ public class RobotContainer {
   // Initializes the default commands and command bindings.
   public RobotContainer() {
     // Configure the automous chooser.
-    m_autoChooser.setDefaultOption("Example Autonomous Trajectory", m_exampleAutoCommand);
+    m_autoChooser.addOption("Example Autonomous Trajectory", m_exampleAutoCommand);
+    m_autoChooser.setDefaultOption("Galactic Search", m_galacticSearchCommand);
+    m_autoChooser.addOption("flip flip", new TurnToAngleCommand(m_drivetrainSubsystem, 180));
+    m_autoChooser.addOption("back back", new DriveStraightCommand(m_drivetrainSubsystem));
 
     // Configure default commands.
 
